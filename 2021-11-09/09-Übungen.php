@@ -40,7 +40,7 @@
     $bez_pctisch= 'Computertisch';
 
     (float)$pr_tisch = 1999.00;
-    (float)$pr_stuhl = 5899.00;
+    (float)$pr_stuhl = 589.00;
     (float)$pr_lampe = 29.00;
     (float)$pr_pctisch = 999.00;
 
@@ -50,10 +50,10 @@
     echo "<p> Der Gesammtpreis lautet <b> $netto <b>" . EU . "</p>";
     echo "<p> Der Brutto Preis lautet <b> $brutto <b>" . EU . "</p>";
 
-    $brutto_tisch = $pr_tisch - ($pr_tisch * MWST);
-    $brutto_stuhl = $pr_stuhl - ($pr_stuhl * MWST);
-    $brutto_lampe = $pr_lampe - ($pr_lampe * MWST);
-    $brutto_pctisch = $pr_pctisch - ($pr_pctisch * MWST);
+    $brutto_tisch = $pr_tisch + ($pr_tisch * MWST);
+    $brutto_stuhl = $pr_stuhl + ($pr_stuhl * MWST);
+    $brutto_lampe = $pr_lampe + ($pr_lampe * MWST);
+    $brutto_pctisch = $pr_pctisch + ($pr_pctisch * MWST);
 
     echo "<p> Der Bruttopreis von $bez_tisch lautet $brutto_tisch" . EU . ".</p>";
     echo "<p> Der Bruttopreis von $bez_stuhl lautet $brutto_stuhl " . EU . ".</p>";
