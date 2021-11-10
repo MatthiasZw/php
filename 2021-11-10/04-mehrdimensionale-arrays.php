@@ -76,8 +76,7 @@
         <tr>
 
                 <!-- Schleife für inneres Array (Spalten)-->
-                <?php  
-                foreach($person as $info): ?>
+                <?php  foreach($person as $info): ?>
             
                     <td><?php echo $info; ?></td>
                  
