@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Übungen Formular</title>
+</head>
+<body>
+    <h1>Bitte Füllen Sie das Formular komplett aus</h1>
+    <h2>Persönliche Daten</h2>
+
+    <form action="02-uebungen.php" method="post">
+
+        <p>
+        Vorname:<input type="text" name="vorn"> <br>
+        Nachname:<input type="text" name="nachn"><br>
+        Wohnort:<input type="text" name="wohn"><br>
+        </p>
+
+
+   
+
+    <h2>Was wir wissen wollen</h2>
+
+        <p> Wo wohnen Sie?
+        Einfamilienhaus <input type="radio" name="haus" value="Einfamilienhaus">
+        Eigentumswohunng<input type="radio" name="haus" value="Eigentumswohnung">
+        Mehrfamilienhaus<input type="radio" name="haus" value="Mehrfamilienhaus">
+        </p>
+
+
+        <p>Welche Tv-Sendungen sehen Sie gerne?
+        Doku<input type="checkbox" name="TV[]" value="Doku">
+        Nachrichten<input type="checkbox" name="TV[]" value="Nachrichten">
+        Spielfilme<input type="checkbox" name="TV[]" value="Spielfilme">
+        Sport<input type="checkbox" name="TV[]" value="Sport">
+        </p>
+
+        <p>Haben Sie noch eine Nachricht für uns?
+            <textarea name="nachricht" id="" cols="30" rows="10"></textarea>
+        </p>
+
+        <input type="submit" value="Datei Speichern">
+        <input type="reset" value="Zurücksetzen">
+   </form>
+</body>
+</html>
