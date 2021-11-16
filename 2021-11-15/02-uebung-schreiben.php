@@ -45,7 +45,7 @@ $g_web = $_POST['web'];
 $g_best = $_POST['best'];
 $g_nach = $_POST['mit'];
 
-$g_all = "$g_name;$g_stra;$g_plz;$g_int;$g_web;$g_best;$g_nach";
+$g_all = "$g_name;$g_stra;$g_plz;$g_int;$g_web;$g_best;$g_nach\r\n";
 
 if(fwrite($fh, $g_all)){
     echo '<p>Folgende Daten wurden gespeichert:<br>';

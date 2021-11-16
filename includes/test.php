@@ -1,6 +1,7 @@
 <?php 
 require_once 'functions.inc.php';
-get_header(
+
+$args = array(
     'Testdatei', 
     array('css/style.css', 
     'css/meinstyle.css'), 
@@ -18,6 +19,8 @@ get_header(
     true
 );
 
-get_nav();
 
-get_footer(true);
+get_header( ...$args);
+
+
+get_footer(true, true);

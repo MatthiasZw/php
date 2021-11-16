@@ -103,7 +103,9 @@
     </main>
 
     <footer class="<?php echo $class_fluid; ?>">
-    <p>&copy; <?php echo date('Y'); ?> Jedermann </p>
+    <div>
+        <p>&copy; <?php echo date('Y'); ?> Jedermann </p>
+    </div>
 
     </footer>
     
