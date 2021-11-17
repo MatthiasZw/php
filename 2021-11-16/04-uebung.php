@@ -10,7 +10,7 @@
 <h1>Begriff in einer Textpassage suchen</h1>
 
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-    Originaltext:    <textarea name="text1" id="" cols="30" rows="10" value="terxt"></textarea>
+    Originaltext:    <textarea name="text1" id="" cols="30" rows="10" value="terxt">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam quos eos veniam qui reprehenderit voluptates facere harum cupiditate adipisci modi inventore in, neque beatae natus a molestias excepturi consectetur ipsam!</textarea>
          <p>Suche nach:<input type="text" name="such"></p>
 
         <p><input type="submit" value="Suchen" name="senden"></p>
@@ -25,8 +25,8 @@
         $org= $_POST['text1'];
         $such = $_POST['such'];
 
-        echo '<pre>', var_dump( $org ), '</pre>';
-        echo '<pre>', var_dump( $such ), '</pre>';
+        /* echo '<pre>', var_dump( $org ), '</pre>';
+        echo '<pre>', var_dump( $such ), '</pre>'; */
 
         echo "<p>Die Suche ($such) kommt in <b>" . $org . '</b> genau <b>' . substr_count($org, $such) . '-mal</b> vor.</p>';
 
