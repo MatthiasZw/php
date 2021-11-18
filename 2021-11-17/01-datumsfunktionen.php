@@ -158,6 +158,7 @@ switch($tsd){
     echo '<p>Fehler<p>';    
 }
 echo '</p>';
+
 function sq(float $num):float{
     $erg=$num*$num;
     return $erg;

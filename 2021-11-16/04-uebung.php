@@ -30,7 +30,7 @@
 
         echo "<p>Die Suche ($such) kommt in <b>" . $org . '</b> genau <b>' . substr_count($org, $such) . '-mal</b> vor.</p>';
 
-
+        // Ausgabe markiert str_replace, Succhbegriff im text  mit <mark>-tags umgeben 
     }
     
     ?>
