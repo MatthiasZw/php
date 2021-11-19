@@ -54,3 +54,12 @@ s-1;Weiße Schokolade;4
 bestelltvon:
 ;;;
 
+Art-NR.;Artikel;Menge
+s-1;Weiße Schokolade;10
+s-3;Trauben-Rum Schokolade;13
+p-2;Mokka-Pralinen;800000
+p-4;Cognac-Pralinen;12165
+
+bestelltvon:
+Bart Simpson;Simpson;Evergreen Ter.;12313 Springfield
+

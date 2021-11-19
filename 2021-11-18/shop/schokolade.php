@@ -28,7 +28,7 @@ get_header( ...$args );
 
     <table class="table table-hover">
 
-        <tr class="table-warning">
+        <tr class="table-info">
             <th>Artikel-Nr.</th>
             <th>Bezeichnung</th>
             <th>Menge</th>
