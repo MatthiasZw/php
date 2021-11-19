@@ -1,0 +1,29 @@
+Art-NR.;Artikel;Menge
+s-1;Weiße Schokolade;6
+s-2;Vollmilch Schokolade;3
+p-3;Nougat-Pralinen;7
+p-2;Mokka-Pralinen;10
+
+bestelltvon:
+Bart;Simpson;Evergreen Ter.;1231231 Springfield
+
+Art-NR.;Artikel;Menge
+s-1;Weiße Schokolade;3
+s-2;Vollmilch Schokolade;4
+p-1;Schnapspralinen;5
+p-2;Mokka-Pralinen;6
+
+bestelltvon:
+Homer;Simpson;Evergreen Ter.;12313 Springfield
+
+Art-NR.;Artikel;Menge
+
+bestelltvon:
+Homer;Simpson;Evergreen Ter.;12313 Springfield
+
+Art-NR.;Artikel;Menge
+p-1;Schnapspralinen;4
+
+bestelltvon:
+Bart Simpson;Simpson;Evergreen Ter.;1231231 Springfield
+

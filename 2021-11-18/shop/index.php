@@ -8,7 +8,7 @@ $args = array(
     true,
     'Royal Sweets - Ihr Schoko-Laden-Laden',
     array(
-        'Royal Sweets',
+        '<img src="rs-logo-109x56.png" alt="logo">Royal Sweets ',
         array(
             'Start' => 'index.php',
             'Pralinen' => 'pralinen.php',
@@ -27,5 +27,6 @@ get_header( ...$args );
     <li><a href="schokolade.php">Schokolade</a></li>
     <li><a href="pralinen.php">Pralinen</a></li>
 </ul>
+
     
 <?php get_footer(true, true); ?>

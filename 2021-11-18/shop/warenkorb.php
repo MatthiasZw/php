@@ -3,53 +3,51 @@ session_start();
 require_once( '../../includes/functions.inc.php' );
 // get_header( string $title, string/array $css=NULL, bool $bootstrap=false, string $header=NULL, array $nav=NULL, bool $fluid=false )
 $args = array(
-    'Royal Sweets',
-    NULL,
-    true,
-    'Royal Sweets - Warenkorb',
-    array(
-        'Royal Sweets',
-        array(
-            'Start' => 'index.php',
-            'Pralinen' => 'pralinen.php',
-            'Schokolade' => 'schokolade.php',
-            'Warenkorb' => 'warenkorb.php'
-        )
-    )
+    "Royal Sweets",null,true,'Royal Sweets - Warenkorb',['<img src="rs-logo-109x56.png" alt="logo">Royal Sweets ',['Start'=>'index.php','Schokolade'=>'schokolade.php','Pralinen'=>'pralinen.php','Warenkorb'=>'warenkorb.php']]
 );
-
 include 'artikel.php';
-
 get_header( ...$args );
-
-echo '<pre>', var_dump( $_POST ), '</pre>';
-
-
 if(isset($_POST['schokolade']) OR isset($_POST['pralinen'])){
-
-    // Das Post-array durchlaufen...
-
-    foreach($_POST as $art_nr => $menge) {
-
-        // Prüfe ob $menge > 0 (Kunde hat bestellt)
-
-        if((int)$menge > 0){
-
-            // Menge in das Session-array schreiben
-
-            $_SESSION[$art_nr] = (int)$menge;
-
-        } else {
-            if(isset($_SESSION[$art_nr])){
-                unset($_SESSION[$art_nr]);
+    foreach ($_POST as $artnr => $menge) {
+        if ((int)$menge>0) {
+            $_SESSION[$artnr]=(int)$menge;
+        }else{
+            if (array_key_exists($artnr,$_SESSION)){
+                unset($_SESSION[$artnr]);
             }
         }
-
+        
     }
-
 }
 
-echo '<pre>', var_dump( $_SESSION ), '</pre>';
+
+
 ?>
-    
+<table class="table table-hover">
+    <tr class="table-success">
+        <th>Artikel Nummer</th>
+        <th>Bezeichnung</th>
+        <th>Menge</th>
+    </tr>
+    <?php foreach ($_SESSION as $key => $value): ?>
+        <tr>
+            <td><?php echo $key; ?></td>
+            <td>
+                <?php
+                 echo str_starts_with($key,'s')?$array_schokolade[$key]:''; 
+                 echo str_starts_with($key,'p')?$array_pralinen[$key]:''; 
+                 ?>
+            </td>
+            <td><?php echo $value; ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
+<p>Was moechten Sie als naechstes tun?</p>
+<ul>
+    <li><a href="schokolade.php">Schokolade bestellen</a></li>
+    <li><a href="pralinen.php">Pralinen bestellen</a></li>
+    <li><a href="kasse.php">Bestellung abschliessen</a></li>
+</ul>
+
 <?php get_footer(true, true); ?>

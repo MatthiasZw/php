@@ -8,7 +8,7 @@ $args = array(
     true,
     'Royal Sweets - Schoko-Laden',
     array(
-        'Royal Sweets',
+        '<img src="rs-logo-109x56.png" alt="logo">Royal Sweets ',
         array(
             'Start' => 'index.php',
             'Pralinen' => 'pralinen.php',
