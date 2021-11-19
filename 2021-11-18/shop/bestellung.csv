@@ -27,3 +27,30 @@ p-1;Schnapspralinen;4
 bestelltvon:
 Bart Simpson;Simpson;Evergreen Ter.;1231231 Springfield
 
+Art-NR.;Artikel;Menge
+p-1;Schnapspralinen;3
+s-1;Weiße Schokolade;5
+p-2;Mokka-Pralinen;5
+
+bestelltvon:
+Bart Simpson;Simpson;Evergreen Ter.;Springfield
+
+Art-NR.;Artikel;Menge
+s-1;Weiße Schokolade;5
+p-2;Mokka-Pralinen;5
+
+bestelltvon:
+Hans ;Maluwurf;Evergreen Ter.;1231231 Springfield
+
+Art-NR.;Artikel;Menge
+s-1;Weiße Schokolade;4
+
+bestelltvon:
+;;;
+
+Art-NR.;Artikel;Menge
+s-1;Weiße Schokolade;4
+
+bestelltvon:
+;;;
+

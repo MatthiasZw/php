@@ -40,9 +40,7 @@ if(file_put_contents('bestellung.csv',$bestellung,FILE_APPEND)){
     echo '<p class="alert alert-danger">';
     echo'Die Bestelldaten konnten nicht uebermittelt werden.<br>Bitte versuchen Sie es noch einmal';
     echo '</p>';
-}
-
-else:
+}else:
 ?>
  <table class="table table-hover">
     <tr class="table-primary">

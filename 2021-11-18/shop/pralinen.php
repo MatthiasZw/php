@@ -39,11 +39,22 @@ get_header( ...$args );
 
             <?php $menge = isset($_SESSION[$art_nr]) ? $_SESSION[$art_nr] : 0 ;?>
 
+            <?php 
+            
+            //funktioniert nur mit edit-button
+
+            $focus='';
+            if(isset($_GET['edit']) && $art_nr === $_GET['edit']){
+                $focus='autofocus';
+            }
+            
+            ?>
+
             <tr>
                 <td><?php echo $art_nr; ?></td>
                 <td><?php echo $bez; ?></td>
                 <td>
-                    <input type="number" name="<?php echo $art_nr; ?>" value="<?php echo $menge ?>" size="5">
+                    <input type="number" name="<?php echo $art_nr; ?>" value="<?php echo $menge ?>" size="5" <?php echo $focus; ?>>
                     
                 </td>
                 <td>Schachtel (250g)</td>
@@ -61,5 +72,15 @@ get_header( ...$args );
     </table>
 
 </form>
+
+<script>
+    /* Selektiert ein Form-Input wenn es den Fokus hat */
+    const elements = document.querySelectorAll ("input");
+    for (let i=0; i<elements.length; i++) {
+        elements[i].addEventListener("focus", function(){
+            this.select();
+        });
+    }
+</script>
     
 <?php get_footer(true, true); ?>
