@@ -22,8 +22,6 @@ if(isset($_POST['schokolade']) OR isset($_POST['pralinen'])){
 
 if(isset($_GET['delete'])){
     unset($_SESSION[$_GET['delete']]);
-
-
 }
 
 ?>
@@ -44,14 +42,12 @@ if(isset($_GET['delete'])){
                 if (str_starts_with($key, 's')){
                     $link = 'schokolade.php';
                     echo $array_schokolade[$key];
-
                 }
                 //echo str_starts_with($key,'p')?$array_pralinen[$key]:''; 
 
                 if (str_starts_with($key, 'p')){
                     $link = 'pralinen.php';
                     echo $array_pralinen[$key];
-
                 }
     
                  ?>
@@ -71,7 +67,6 @@ if(isset($_GET['delete'])){
 <style>
 
         .delete{
-
             pointer-events: none;
             cursor: default;
             text-decoration: none;
@@ -84,9 +79,7 @@ if(isset($_GET['delete'])){
 
         $delete = '';
         if(empty($_SESSION)){
-
             $delete = 'delete';
-
         }
 
 ?>
