@@ -81,9 +81,9 @@ include 'artikel.php';
     VALUES
     (
         ' . '"' . $_POST['vname'] . '"' . ' ,
-        ' . '"' . $_POST['nname'] . '"' . '    
-        ' . '"' . $_POST['strasse'] . '"' . '    
-        ' . '"' . $_POST['ort'] . '"' . '    
+        ' . '"' . $_POST['nname'] . '"' . ' ,   
+        ' . '"' . $_POST['strasse'] . '"' . ',    
+        ' . '"' . $_POST['ort'] . '"' . ',    
         ' . '"' . $bestellung . '"' . '    
     )';
 
