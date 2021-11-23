@@ -26,19 +26,32 @@ get_header( ...$args );
             )
             VALUES
             (
-            '$gerte_name',
-            '$gerte_beschreibung',
-            $gerte_kateg_id_ref
+            ?,?,?
             )";
 
-        $result= mysqli_query($db, $sql) ;
+        $stmt= mysqli_prepare($db, $sql) ;
         
-        if(false=== $result){
+        if(false=== $stmt){
             echo get_db_error($db, $sql);
         }else{
+            // Werte und Datentypen an die Platzhalter (?) binden 
+
+            mysqli_stmt_bind_param($stmt, 'ssi', $gerte_name, $gerte_beschreibung, $gerte_kateg_id_ref);
+
+            // Ausführung
+
+            mysqli_stmt_execute($stmt);
+
+            // Liefert die zuletzt hinzugefügt ID
+
+            $id= mysqli_stmt_insert_id($stmt);
+
             echo '<p class="alert alert-success">';
             echo mysqli_affected_rows($db);
-            echo ' Datensatz wurde hinzugefügt</p>';
+            echo ' Datensatz wurde hinzugefügt <br></p>';
+            echo 'HInzugefügte ID:' . $id . '</p>';
+
+            mysqli_stmt_close($stmt);
         }
 
     }
@@ -90,4 +103,6 @@ get_header( ...$args );
 
 
 </form>
-<?php get_footer(); ?>
+<?php 
+mysqli_close($db);
+get_footer(); ?>
