@@ -26,7 +26,44 @@ $args = array(
         )
     );
 get_header( ...$args );
+
+$sql = "SELECT posts_id,
+posts_autor_id_ref, 
+posts_kateg_id_ref, 
+posts_titel,
+posts_inhalt,
+posts_bild FROM `tbl_posts`";
+
+
+$result = mysqli_query($db, $sql);
+
+if(false===$result){
+    echo get_db_error($db, $sql);
+}else{
+    while ($row = mysqli_fetch_assoc( $result)): ?>
+    
+        <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>">
+            <div>Titel: <?php echo $row['posts_titel']; ?></div>
+        </a>
+        <div>Autoren-ID: <?php echo $row['posts_autor_id_ref']; ?></div>
+        <div>Kathegorie-ID: <?php echo $row['posts_kateg_id_ref']; ?></div>
+        <div>Bild-Pfad: <?php echo $row['posts_bild']; ?></div>
+        <div>Text: <?php echo $row['posts_inhalt']; ?></div> 
+        <br>
+
+        
+        
+        
+    
+      
+
+    <?php endwhile;
+}
+
 ?>
+
+
+
 
 
     
