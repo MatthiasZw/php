@@ -11,14 +11,64 @@ $args = array(
     'Miniblog-LOGIN',
     array(
         'Mein Blog',
-    array( 'Uebersicht' => 'index.php?id=1',
+    array( 'Uebersicht' => 'index.php',
      'Login' => 'login.php',
      'Registrierung' => 'registrierung.php',
      'Neu' => 'neu.php')
         )
     );
 get_header( ...$args );
+if( !empty($_POST)){
+
+    // Variablen erstellen
+
+    $autor_email = $_POST['autor_email'];
+    $autor_passwort = $_POST['autor_passwort'];
+
+    $sql = "SELECT
+        autor_email, 
+        autor_passwort
+        FROM
+            tbl_autoren
+        WHERE
+            autor_email = ?";
+
+            
+    $stmt = mysqli_prepare($db, $sql);
+      
+
+        if(false === $stmt) {
+
+            get_db_error($db, $sql);
+
+        }else{
+            mysqli_stmt_bind_param($stmt, 's', $autor_email);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_store_result($stmt);
+            mysqli_stmt_bind_result($stmt, $db_uname, $db_upw);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+
+            //Prüfe ob Passwort übereinstimmt
+            if(password_verify($autor_passwort, $db_upw)){
+                echo '<p class="alert alert-success">Login erfolgreich!</p>';
+            }else{
+                echo '<p class="alert alert-danger">Login fehlgeschlagen!</p>';
+            }
+            
+        }
+
+}                
+
+
+
 ?>
+
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <p>E-Mail-Adresse: <input type="text" name="autor_email" ></p>
+    <p>Passwort: <input type="text" name="autor_passwort"></p>
+    <p><button type="submit">Login</button></p>
+</form>
 
 
     

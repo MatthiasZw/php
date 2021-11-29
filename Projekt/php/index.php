@@ -11,7 +11,7 @@ $args = array(
     'Miniblog-UEBERSICHT',
     array(
         'Mein Blog',
-    array( 'Uebersicht' => 'index.php?id=1',
+    array( 'Uebersicht' => 'index.php',
      'Login' => 'login.php',
      'Registrierung' => 'registrierung.php',
      'Neu' => 'neu.php')
