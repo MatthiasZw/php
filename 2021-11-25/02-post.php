@@ -31,6 +31,7 @@ if(!empty($_GET)){
     }
 }
 
+// FEHLT WAS, XAMMP war kaputt, alles neu instaliert
 
 ?>
     
