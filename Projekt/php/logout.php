@@ -14,7 +14,7 @@ $args = array(
     'Miniblog',
     'css/blog.css',
     true,
-    'Miniblog-UEBERSICHT',
+    'Miniblog-LOGOUT',
     array(
         'Mein Blog',
     array( 'Uebersicht' => 'index.php',

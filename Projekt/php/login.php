@@ -52,8 +52,15 @@ if( !empty($_POST)){
             //Prüfe ob Passwort übereinstimmt
             if(password_verify($autor_passwort, $db_upw)){
                 echo '<p class="alert alert-success">Login erfolgreich!</p>';
+                $_SESSION['login']=true;
+                $_SESSION['navlog']='Logout';
+                $_SESSION['navlink']='logout.php';
             }else{
                 echo '<p class="alert alert-danger">Login fehlgeschlagen!</p>';
+                $_SESSION['login']=false;
+                $_SESSION['navlog']='Login';
+                $_SESSION['navlink']='login.php';
+                
             }
             
         }
