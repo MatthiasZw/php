@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once( '../includes/functions.inc.php' );
 $database = 'miniblog';
 require_once( '../includes/db-connect.inc.php' );
@@ -8,11 +9,11 @@ $args = array(
     'Miniblog',
     'css/blog.css',
     true,
-    'Miniblog-NEU-ERSTELLEN',
+    'Miniblog-UEBERSICHT',
     array(
         'Mein Blog',
     array( 'Uebersicht' => 'index.php',
-     'Login' => 'login.php',
+     $_SESSION['navlog'] => $_SESSION['navlink'],
      'Registrierung' => 'registrierung.php',
      'Neu' => 'neu.php')
         )

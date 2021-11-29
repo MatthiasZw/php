@@ -8,8 +8,6 @@ if( ! isset($_SESSION['navlog'])){
     $_SESSION['neulink']='';
 }
 
-
-
 require_once( '../includes/functions.inc.php' );
 $database = 'miniblog';
 require_once( '../includes/db-connect.inc.php' );
@@ -18,7 +16,7 @@ $args = array(
     'Miniblog',
     'css/blog.css',
     true,
-    'Miniblog-LOGOUT',
+    'Miniblog-DETAILSEITE',
     array(
         'Mein Blog',
     array( 'Uebersicht' => 'index.php',
@@ -28,21 +26,6 @@ $args = array(
         )
     );
 get_header( ...$args );
-
-
-$_SESSION = array();
-
-
-if(session_destroy()){
-    echo '<div><h1><span class="text-success">Sie wurden erfolgreich ausgelogt. Herzlichen Dank für Ihren Besuch!</span></h1></div><div><h2><a href="index.php">Sie werden in 3 Sekunden zurück zur Übersicht geleitet.</a></h2></div>';
-
-    header("Refresh:3; url=index.php");
-
-}else {
-    echo '<span class="text-danger">Auslogen fehlgeschlagen!</span>';
-}
-
-
 ?>
 
 

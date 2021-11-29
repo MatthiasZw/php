@@ -1,10 +1,12 @@
 <?php
 session_start();
-if(!$_SESSION['navlog']){
+if( ! isset($_SESSION['navlog'])){
     $_SESSION['navlog']='Login';
     $_SESSION['navlink']='login.php';
+    
+    $_SESSION['navneu']='';
+    $_SESSION['neulink']='';
 }
-
 
 require_once( '../includes/functions.inc.php' );
 $database = 'miniblog';
@@ -20,7 +22,7 @@ $args = array(
     array( 'Uebersicht' => 'index.php',
      $_SESSION['navlog'] => $_SESSION['navlink'],
      'Registrierung' => 'registrierung.php',
-     'Neu' => 'neu.php')
+     $_SESSION['navneu'] => $_SESSION['neulink'])
         )
     );
 get_header( ...$args );

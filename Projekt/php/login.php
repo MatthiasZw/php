@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!$_SESSION['navlog']){
+    $_SESSION['navlog']='Login';
+    $_SESSION['navlink']='login.php';
+}
 require_once( '../includes/functions.inc.php' );
 $database = 'miniblog';
 require_once( '../includes/db-connect.inc.php' );
@@ -8,13 +12,13 @@ $args = array(
     'Miniblog',
     'css/blog.css',
     true,
-    'Miniblog-LOGIN',
+    'Miniblog-UEBERSICHT',
     array(
         'Mein Blog',
     array( 'Uebersicht' => 'index.php',
-     'Login' => 'login.php',
+     $_SESSION['navlog'] => $_SESSION['navlink'],
      'Registrierung' => 'registrierung.php',
-     'Neu' => 'neu.php')
+     $_SESSION['navneu'] => $_SESSION['neulink'])
         )
     );
 get_header( ...$args );
@@ -51,10 +55,19 @@ if( !empty($_POST)){
 
             //Prüfe ob Passwort übereinstimmt
             if(password_verify($autor_passwort, $db_upw)){
-                echo '<p class="alert alert-success">Login erfolgreich!</p>';
+                
                 $_SESSION['login']=true;
                 $_SESSION['navlog']='Logout';
                 $_SESSION['navlink']='logout.php';
+                $_SESSION['navneu']='Neu';
+                $_SESSION['neulink']='neu.php';
+
+                
+
+                echo '<p class="alert alert-success">Login erfolgreich! Seite wird in 3 Sekunden neu geladen. </p>';
+                
+                header("refresh:3");
+
             }else{
                 echo '<p class="alert alert-danger">Login fehlgeschlagen!</p>';
                 $_SESSION['login']=false;

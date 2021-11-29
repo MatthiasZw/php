@@ -1,5 +1,13 @@
 <?php
 session_start();
+if( ! isset($_SESSION['navlog'])){
+    $_SESSION['navlog']='Login';
+    $_SESSION['navlink']='login.php';
+    
+    $_SESSION['navneu']='';
+    $_SESSION['neulink']='';
+}
+
 require_once( '../includes/functions.inc.php' );
 $database = 'miniblog';
 require_once( '../includes/db-connect.inc.php' );
@@ -8,13 +16,13 @@ $args = array(
     'Miniblog',
     'css/blog.css',
     true,
-    'Miniblog-Registrierung',
+    'Miniblog-UEBERSICHT',
     array(
         'Mein Blog',
     array( 'Uebersicht' => 'index.php',
-     'Login' => 'login.php',
+     $_SESSION['navlog'] => $_SESSION['navlink'],
      'Registrierung' => 'registrierung.php',
-     'Neu' => 'neu.php')
+     $_SESSION['navneu'] => $_SESSION['neulink'])
         )
     );
 get_header( ...$args );
