@@ -33,7 +33,7 @@ get_header( ...$args );
 
 $page= $_GET['page'];
 
-$sql = "SELECT posts_id,
+/* $sql = "SELECT posts_id,
 posts_autor_id_ref, 
 posts_kateg_id_ref, 
 posts_titel,
@@ -50,7 +50,7 @@ if(false===$result){
     
 
 
-    <form action="geaendert.php?<?php echo 'page='. $row['posts_id']; ?>" method="post">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
     <div>Titel: <input type="text" name="titel" value="<?php echo $row['posts_titel']; ?>"></div>
     <div>Autoren-ID: <input type="text" name="aid" value="<?php echo $row['posts_autor_id_ref']; ?>"></div>
@@ -65,7 +65,7 @@ if(false===$result){
 
 
     <?php endwhile;
-}
+} */
 
 /* Neu schreiben */
 
@@ -78,17 +78,13 @@ if(!empty($_POST)){
     $posts_bild= mysqli_real_escape_string($db, $_POST['url']);
 
 
-    $sql = "INSERT INTO `tbl_posts` (
-        posts_autor_id_ref, 
-        posts_kateg_id_ref, 
-        posts_titel,
-        posts_inhalt,
-        posts_bild
-        )
-        VALUES
-        (
-        ?,?,?,?,?
-        ) WHERE posts_id=$page";
+    $sql = "UPDATE `tbl_posts` SET 
+        posts_autor_id_ref=?, 
+        posts_kateg_id_ref=?, 
+        posts_titel=?,
+        posts_inhalt=?,
+        posts_bild=?
+        WHERE posts_id=$page";
 
     $stmt= mysqli_prepare($db, $sql) ;
     
@@ -108,11 +104,11 @@ if(!empty($_POST)){
         $id= mysqli_stmt_insert_id($stmt);
 
         echo '<p class="alert alert-success">';
-        echo mysqli_affected_rows($db);
-        echo ' Datensatz wurde hinzugefügt <br></p>';
-        echo 'HInzugefügte ID:' . $id . '</p>';
+        echo 'Ihr Post mit dem Titel: <b>' . $_POST['titel'] . ' </b> wurde geändert! Sie werden in 3 Sekunden zurück zur Hauptseite geleitet.</p>';
 
         mysqli_stmt_close($stmt);
+
+        header("Refresh:3; url=index.php");
     }
 
 }

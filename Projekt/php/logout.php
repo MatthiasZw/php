@@ -46,5 +46,5 @@ if(session_destroy()){
 ?>
 
 
-    
+<br>    
 <?php get_footer(true, true); ?>

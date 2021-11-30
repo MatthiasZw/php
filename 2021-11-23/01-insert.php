@@ -102,7 +102,7 @@ get_header( ...$args );
     
 
 
-</form>
+</form><br>
 <?php 
 mysqli_close($db);
 get_footer(); ?>

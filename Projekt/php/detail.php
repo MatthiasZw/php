@@ -44,22 +44,26 @@ if(false===$result){
 }else{
     while ($row = mysqli_fetch_assoc( $result)): ?>
     
-        <a href="aendern.php?<?php echo 'page='. $row['posts_id']; ?>">
+       
             <div>Titel: <?php echo $row['posts_titel']; ?></div>
         </a>
         <div>Autoren-ID: <?php echo $row['posts_autor_id_ref']; ?></div>
         <div>Kathegorie-ID: <?php echo $row['posts_kateg_id_ref']; ?></div>
         <div>Bild-Pfad: <?php echo $row['posts_bild']; ?></div>
-        <div>Text: <?php echo $row['posts_inhalt']; ?></div> 
+        <div>Text: <?php echo $row['posts_inhalt']; ?></div> <br>
+        <button><a href="aendern.php?<?php echo 'page='. $row['posts_id']; ?>">Aendern</button>
         <br>
 
 
     <?php endwhile;
 }
 
-
 ?>
 
 
-    
+
+
+
+
+ <br>   
 <?php get_footer(true, true); ?>

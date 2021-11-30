@@ -89,7 +89,7 @@ if( !empty($_POST)){
     <p>Passwort: <input type="text" name="autor_passwort"></p>
     <p><button type="submit">Login</button></p>
 </form>
-
+<br>
 
     
 <?php get_footer(true, true); ?>
