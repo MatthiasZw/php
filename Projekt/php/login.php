@@ -66,7 +66,7 @@ if( !empty($_POST)){
             
             echo '<p class="alert alert-success">Login erfolgreich! Sie werden in 3 Sekunden zurück zur Hauptseite geleitet. </p>';
             
-            header("refresh:3; url=index.php");
+            header("refresh:30; url=index.php");
 
         }else{
             echo '<p class="alert alert-danger">Login fehlgeschlagen!</p>';
@@ -98,6 +98,35 @@ if( !empty($_POST)){
         $_SESSION['aid']= $row['autor_id'];
            
 
+         endwhile;
+    }
+
+
+    // Kategorien in $_SESSION
+
+    $sql3 = "SELECT
+    `kateg_id`,
+    `kateg_name` 
+    FROM
+        `tbl_kategorien`";
+
+
+    $result3 = mysqli_query($db, $sql3);
+
+
+    if(false===$result3){
+        echo get_db_error($db, $sql3);
+    }else{
+        while ($row = mysqli_fetch_assoc( $result3)):
+            
+           
+                $_SESSION[$row['kateg_name']] = $row;
+                
+            
+            echo '<pre>', var_dump( $row ), '</pre>';
+
+        
+           
          endwhile;
     }
 
