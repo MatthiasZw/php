@@ -54,31 +54,23 @@ if(!empty($_POST)){
     if(false=== $stmt){
         echo get_db_error($db, $sql);
     }else{
-        // Werte und Datentypen an die Platzhalter (?) binden 
 
         mysqli_stmt_bind_param($stmt, 'iisss', $posts_autor_id_ref, $posts_kateg_id_ref, $posts_titel, $posts_inhalt, $posts_bild);
 
-        // Ausführung
-
         mysqli_stmt_execute($stmt);
 
-        // Liefert die zuletzt hinzugefügt ID
-
-        $id= mysqli_stmt_insert_id($stmt);
 
         echo '<p class="alert alert-success">';
-        echo mysqli_affected_rows($db);
-        echo ' Datensatz wurde hinzugefügt <br></p>';
-        echo 'HInzugefügte ID:' . $id . '</p>';
+        echo 'Ihr Post mit dem Titel: <b>' . $_POST['titel'] . ' </b> wurde erstellt! Sie werden in 3 Sekunden zurück zur Hauptseite geleitet.</p>';
 
         mysqli_stmt_close($stmt);
+
+        header("Refresh:3; url=index.php");
     }
 
 }
 
-
 ?>
-
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 

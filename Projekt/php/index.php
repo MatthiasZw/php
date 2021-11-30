@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if( ! isset($_SESSION['navlog'])){
     $_SESSION['navlog']='Login';
@@ -27,44 +28,121 @@ $args = array(
     );
 get_header( ...$args );
 
-$sql = "SELECT posts_id,
-posts_autor_id_ref, 
-posts_kateg_id_ref, 
-posts_titel,
-posts_inhalt,
-posts_bild FROM `tbl_posts`";
+//Auslesen der Kategorien für Select-Filter:
+
+    $sql = "SELECT posts_id,
+    posts_autor_id_ref, 
+    posts_kateg_id_ref, 
+    posts_titel,
+    posts_inhalt,
+    posts_bild FROM `tbl_posts`";
 
 
-$result = mysqli_query($db, $sql);
+    $result = mysqli_query($db, $sql);
 
-if(false===$result){
-    echo get_db_error($db, $sql);
-}else{
-    while ($row = mysqli_fetch_assoc( $result)): ?>
+?> 
+
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
     
-        <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>">
-            <div>Titel: <?php echo $row['posts_titel']; ?></div>
-        </a>
-        <div>Autoren-ID: <?php echo $row['posts_autor_id_ref']; ?></div>
-        <div>Kathegorie-ID: <?php echo $row['posts_kateg_id_ref']; ?></div>
-        <div>Bild-Pfad: <?php echo $row['posts_bild']; ?></div>
-        <div>Text: <?php echo $row['posts_inhalt']; ?></div> 
-        <br>
+        Kategorie auswählen: <select name="auswahl" >
 
-        
-        
-        
-    
-      
+    <?php
 
-    <?php endwhile;
-}
+        if(false===$result){
+            echo get_db_error($db, $sql);
+        }else{
+            while ($row = mysqli_fetch_assoc( $result)): ?>
 
+
+
+
+                <option value="<?php echo $row['posts_kateg_id_ref']; ?>"><?php echo $row['posts_kateg_id_ref']; ?></option>
+
+            <?php endwhile;
+
+        }
+
+    ?>
+
+    </select>
+
+        <button type="submit">Filtern</button>
+
+</form>
+
+<!-- Anzeigen der gefilterten Posts oder alle Posts: -->
+
+<?php 
+
+    if (isset( $_GET['auswahl'])){
+
+        $auswahl=$_GET['auswahl'];
+
+        $sql = "SELECT posts_id,
+        posts_autor_id_ref, 
+        posts_kateg_id_ref, 
+        posts_titel,
+        posts_inhalt,
+        posts_bild FROM `tbl_posts` WHERE posts_kateg_id_ref=$auswahl";
+
+
+        $result = mysqli_query($db, $sql);
+
+
+        if(false===$result){
+            echo get_db_error($db, $sql);
+        }else{
+            while ($row = mysqli_fetch_assoc( $result)): ?> 
+            
+                <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>">
+                    <div>Titel: <?php echo $row['posts_titel']; ?></div>
+                </a>
+                <div>Autoren-ID: <?php echo $row['posts_autor_id_ref']; ?></div>
+                <div>Kathegorie-ID: <?php echo $row['posts_kateg_id_ref']; ?></div>
+                <div>Bild-Pfad: <?php echo $row['posts_bild']; ?></div>
+                <div>Text: <?php echo $row['posts_inhalt']; ?></div> 
+                <br>
+
+
+            <?php endwhile;
+  
+        }
+
+    }else{
+
+        $sql = "SELECT posts_id,
+        posts_autor_id_ref, 
+        posts_kateg_id_ref, 
+        posts_titel,
+        posts_inhalt,
+        posts_bild FROM `tbl_posts`";
+
+
+        $result = mysqli_query($db, $sql);
+
+
+        if(false===$result){
+            echo get_db_error($db, $sql);
+        }else{
+            while ($row = mysqli_fetch_assoc( $result)): ?> 
+            
+                <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>">
+                    <div>Titel: <?php echo $row['posts_titel']; ?></div>
+                </a>
+                <div>Autoren-ID: <?php echo $row['posts_autor_id_ref']; ?></div>
+                <div>Kathegorie-ID: <?php echo $row['posts_kateg_id_ref']; ?></div>
+                <div>Bild-Pfad: <?php echo $row['posts_bild']; ?></div>
+                <div>Text: <?php echo $row['posts_inhalt']; ?></div> 
+                <br>
+
+
+            <?php endwhile;
+  
+        }
+
+    }
+ 
 ?>
-
-
-
-
 
     
 <?php get_footer(true, true); ?>

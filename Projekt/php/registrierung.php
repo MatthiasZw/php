@@ -26,9 +26,8 @@ $args = array(
         )
     );
 get_header( ...$args );
-if(!empty($_POST)){
 
-    // Variablen anlegen
+if(!empty($_POST)){
 
     $autor_email = $_POST['autor_email'];
     $autor_passwort = password_hash($_POST['autor_passwort'], PASSWORD_DEFAULT);

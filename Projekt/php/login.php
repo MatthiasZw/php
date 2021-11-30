@@ -24,8 +24,6 @@ $args = array(
 get_header( ...$args );
 if( !empty($_POST)){
 
-    // Variablen erstellen
-
     $autor_email = $_POST['autor_email'];
     $autor_passwort = $_POST['autor_passwort'];
 
@@ -41,46 +39,43 @@ if( !empty($_POST)){
     $stmt = mysqli_prepare($db, $sql);
       
 
-        if(false === $stmt) {
+    if(false === $stmt) {
 
-            get_db_error($db, $sql);
+        get_db_error($db, $sql);
+
+    }else{
+        mysqli_stmt_bind_param($stmt, 's', $autor_email);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+        mysqli_stmt_bind_result($stmt, $db_uname, $db_upw);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+
+
+        if(password_verify($autor_passwort, $db_upw)){
+            
+            $_SESSION['login']=true;
+            $_SESSION['navlog']='Logout';
+            $_SESSION['navlink']='logout.php';
+            $_SESSION['navneu']='Neu';
+            $_SESSION['neulink']='neu.php';
+
+            
+            echo '<p class="alert alert-success">Login erfolgreich! Seite wird in 3 Sekunden neu geladen. </p>';
+            
+            header("refresh:3");
 
         }else{
-            mysqli_stmt_bind_param($stmt, 's', $autor_email);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_store_result($stmt);
-            mysqli_stmt_bind_result($stmt, $db_uname, $db_upw);
-            mysqli_stmt_fetch($stmt);
-            mysqli_stmt_close($stmt);
-
-            //Prüfe ob Passwort übereinstimmt
-            if(password_verify($autor_passwort, $db_upw)){
-                
-                $_SESSION['login']=true;
-                $_SESSION['navlog']='Logout';
-                $_SESSION['navlink']='logout.php';
-                $_SESSION['navneu']='Neu';
-                $_SESSION['neulink']='neu.php';
-
-                
-
-                echo '<p class="alert alert-success">Login erfolgreich! Seite wird in 3 Sekunden neu geladen. </p>';
-                
-                header("refresh:3");
-
-            }else{
-                echo '<p class="alert alert-danger">Login fehlgeschlagen!</p>';
-                $_SESSION['login']=false;
-                $_SESSION['navlog']='Login';
-                $_SESSION['navlink']='login.php';
-                
-            }
+            echo '<p class="alert alert-danger">Login fehlgeschlagen!</p>';
+            $_SESSION['login']=false;
+            $_SESSION['navlog']='Login';
+            $_SESSION['navlink']='login.php';
             
         }
+        
+    }
 
 }                
-
-
 
 ?>
 

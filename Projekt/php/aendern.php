@@ -29,7 +29,7 @@ $args = array(
     );
 get_header( ...$args );
 
-/* Auslesen für Formular */
+/* Auslesen für Formular: */
 
 $page= $_GET['page'];
 
@@ -65,56 +65,6 @@ if(false===$result){
 
 
     <?php endwhile;
-}
-
-/* Neu schreiben */
-
-if(!empty($_POST)){
-
-    $posts_autor_id_ref = mysqli_real_escape_string($db, $_POST['aid']);
-    $posts_kateg_id_ref = mysqli_real_escape_string($db, $_POST['kid']);
-    $posts_titel= mysqli_real_escape_string($db, $_POST['titel']);
-    $posts_inhalt= mysqli_real_escape_string($db, $_POST['text']);
-    $posts_bild= mysqli_real_escape_string($db, $_POST['url']);
-
-
-    $sql = "INSERT INTO `tbl_posts` (
-        posts_autor_id_ref, 
-        posts_kateg_id_ref, 
-        posts_titel,
-        posts_inhalt,
-        posts_bild
-        )
-        VALUES
-        (
-        ?,?,?,?,?
-        ) WHERE posts_id=$page";
-
-    $stmt= mysqli_prepare($db, $sql) ;
-    
-    if(false=== $stmt){
-        echo get_db_error($db, $sql);
-    }else{
-        // Werte und Datentypen an die Platzhalter (?) binden 
-
-        mysqli_stmt_bind_param($stmt, 'iisss', $posts_autor_id_ref, $posts_kateg_id_ref, $posts_titel, $posts_inhalt, $posts_bild);
-
-        // Ausführung
-
-        mysqli_stmt_execute($stmt);
-
-        // Liefert die zuletzt hinzugefügt ID
-
-        $id= mysqli_stmt_insert_id($stmt);
-
-        echo '<p class="alert alert-success">';
-        echo mysqli_affected_rows($db);
-        echo ' Datensatz wurde hinzugefügt <br></p>';
-        echo 'HInzugefügte ID:' . $id . '</p>';
-
-        mysqli_stmt_close($stmt);
-    }
-
 }
 
 
