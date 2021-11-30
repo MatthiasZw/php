@@ -61,9 +61,9 @@ if( !empty($_POST)){
             $_SESSION['neulink']='neu.php';
 
             
-            echo '<p class="alert alert-success">Login erfolgreich! Seite wird in 3 Sekunden neu geladen. </p>';
+            echo '<p class="alert alert-success">Login erfolgreich! Sie werden in 3 Sekunden zurück zur Hauptseite geleitet. </p>';
             
-            header("refresh:3");
+            header("refresh:3; url=index.php");
 
         }else{
             echo '<p class="alert alert-danger">Login fehlgeschlagen!</p>';
