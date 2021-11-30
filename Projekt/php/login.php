@@ -29,7 +29,7 @@ if( !empty($_POST)){
 
     $sql = "SELECT
         autor_email, 
-        autor_passwort
+        autor_passwort, 
         FROM
             tbl_autoren
         WHERE
@@ -73,6 +73,29 @@ if( !empty($_POST)){
             
         }
         
+    }
+
+    //Autor ID in $_SESSION speichern:
+    
+    $sql2 = "SELECT
+    `autor_id` 
+    FROM
+        `tbl_autoren`
+    WHERE
+        autor_email = '$autor_email'";
+
+
+    $result2 = mysqli_query($db, $sql2);
+
+    if(false===$result2){
+        echo get_db_error($db, $sql2);
+    }else{
+        while ($row = mysqli_fetch_assoc( $result2)):
+        
+        $_SESSION['aid']= $row['autor_id'];
+           
+
+         endwhile;
     }
 
 }                
