@@ -22,6 +22,7 @@ $args = array(
         )
     );
 get_header( ...$args );
+
 if( !empty($_POST)){
 
     $autor_email = $_POST['autor_email'];
@@ -29,7 +30,7 @@ if( !empty($_POST)){
 
     $sql = "SELECT
         autor_email, 
-        autor_passwort, 
+        autor_passwort
         FROM
             tbl_autoren
         WHERE
@@ -37,11 +38,13 @@ if( !empty($_POST)){
 
             
     $stmt = mysqli_prepare($db, $sql);
+
       
 
     if(false === $stmt) {
 
         get_db_error($db, $sql);
+        
 
     }else{
         mysqli_stmt_bind_param($stmt, 's', $autor_email);
@@ -75,7 +78,7 @@ if( !empty($_POST)){
         
     }
 
-    //Autor ID in $_SESSION speichern:
+    //Autor ID in $_SESSION
     
     $sql2 = "SELECT
     `autor_id` 

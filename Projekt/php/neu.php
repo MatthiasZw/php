@@ -55,7 +55,7 @@ if(!empty($_POST)){
         echo get_db_error($db, $sql);
     }else{
 
-        mysqli_stmt_bind_param($stmt, 'iisss', $posts_autor_id_ref, $posts_kateg_id_ref, $posts_titel, $posts_inhalt, $posts_bild);
+        mysqli_stmt_bind_param($stmt, 'sisss', $posts_autor_id_ref, $posts_kateg_id_ref, $posts_titel, $posts_inhalt, $posts_bild);
 
         mysqli_stmt_execute($stmt);
 
@@ -75,7 +75,7 @@ if(!empty($_POST)){
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
         <div>Titel: <input type="text" name="titel"></div>
-        <div>Autoren-ID: <input type="text" name="aid"></div>
+        <div>Autoren-ID: <input type="text" name="aid" value="<?php echo $_SESSION['aid'];?>"></div>
         <div>Kathegorie-ID: <input type="text" name="kid"></div>
         <div>Bild-URL: <input type="text" name="url"></div>
         <div>Text: <textarea name="text" id="" cols="30" rows="10"></textarea></div>
