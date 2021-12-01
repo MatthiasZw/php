@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-
+$page= $_GET['page'];
 /* Verhindern dass Seite über URL geladen werden kann:  */
 
     if(!isset($_SESSION['login']) OR $_SESSION['login']==false){
-
-        header("Refresh:0; url=index.php");
+        
+        header("Refresh:0; url=bitteanmelden.php?page=$page");
 
     }
 
@@ -31,7 +31,7 @@ get_header( ...$args );
 
 /* Auslesen für Formular: */
 
-$page= $_GET['page'];
+
 
 $sql = "SELECT posts_id,
 posts_autor_id_ref, 
@@ -53,10 +53,19 @@ if(false===$result){
     <form action="geaendert.php?<?php echo 'page='. $row['posts_id']; ?>" method="post">
 
     <div>Titel: <input type="text" name="titel" value="<?php echo $row['posts_titel']; ?>"></div>
-    <div>Autoren-ID: <input type="text" name="aid" value="<?php echo $row['posts_autor_id_ref']; ?>"></div>
-    <div>Kathegorie-ID: <input type="text" name="kid" value="<?php echo $row['posts_kateg_id_ref']; ?>"></div>
-    <div>Bild-URL: <input type="text" name="url" value="<?php echo $row['posts_bild']; ?>"></div>
-    <div>Text: <textarea name="text" id="" cols="30" rows="10"><?php echo $row['posts_inhalt']; ?></textarea></div>
+
+    <div><b>Kategorie:</b>
+        <select name="auswahl" >
+                <option value="<?php echo $_SESSION['Gitarre']['kateg_id']; ?>"><?php echo $_SESSION['Gitarre']['kateg_name']; ?></option>
+                <option value="<?php echo $_SESSION['Bass']['kateg_id']; ?>"><?php echo $_SESSION['Bass']['kateg_name']; ?></option>
+                <option value="<?php echo $_SESSION['Schlagzeug']['kateg_id']; ?>"><?php echo $_SESSION['Schlagzeug']['kateg_name']; ?></option>
+                <option value="<?php echo $_SESSION['Saxophon']['kateg_id']; ?>"><?php echo $_SESSION['Saxophon']['kateg_name']; ?></option>
+            </select>
+    </div>
+
+    
+    <div><b>Bild-URL:</b> <input type="text" name="url" value="<?php echo $row['posts_bild']; ?>"></div>
+    <div><b>Text:</b> <textarea name="text" id="" cols="30" rows="10"><?php echo $row['posts_inhalt']; ?></textarea></div>
 
     <div><button type="submit">Speichern</button>
     <button type="reset">Zurücksetzen</button></div>

@@ -29,12 +29,28 @@ get_header( ...$args );
 
     $page= $_GET['page'];
 
-    $sql = "SELECT posts_id,
-    posts_autor_id_ref, 
-    posts_kateg_id_ref, 
-    posts_titel,
-    posts_inhalt,
-    posts_bild FROM `tbl_posts` WHERE posts_id= $page";
+//Auslesen von Autor-Namen und -Nachnamen des anzuzeigenden Posts
+
+    $sql1 = "SELECT * FROM `tbl_autoren` FULL JOIN tbl_posts on `autor_id` = `posts_autor_id_ref` WHERE posts_id= $page";
+
+
+    $result1 = mysqli_query($db, $sql1);
+
+    if(false===$result1){
+        echo get_db_error($db, $sql1);
+    }else{
+        while ($row = mysqli_fetch_assoc( $result1)): ?>
+        
+        <?php $name= $row['autor_vorname'] . ' ' . $row['autor_nachname']; ?>
+
+        <?php endwhile;
+    }
+
+// Auslesen von Daten des anzuzeigenden Posts
+
+    $sql = "SELECT * FROM `tbl_posts` 
+    FULL JOIN tbl_kategorien on `posts_kateg_id_ref` = `kateg_id` 
+    WHERE posts_id= $page";
 
 
     $result = mysqli_query($db, $sql);
@@ -45,12 +61,13 @@ get_header( ...$args );
         while ($row = mysqli_fetch_assoc( $result)): ?>
         
         
-                <div>Titel: <?php echo $row['posts_titel']; ?></div>
+                <div><b>Titel: </b><?php echo $row['posts_titel']; ?></div>
             </a>
-            <div>Autoren-ID: <?php echo $row['posts_autor_id_ref']; ?></div>
-            <div>Kathegorie-ID: <?php echo $row['posts_kateg_id_ref']; ?></div>
-            <div>Bild-Pfad: <?php echo $row['posts_bild']; ?></div>
-            <div>Text: <?php echo $row['posts_inhalt']; ?></div> <br>
+            <div><b>Autor:</b> <?php echo $name; ?></div>
+            <div><b>Autoren-ID:</b> <?php echo $row['posts_autor_id_ref']; ?></div>
+            <div><b>Kathegorie:</b> <?php echo $row['kateg_name']; ?></div>
+            <div><b>Bild-Pfad:</b> <?php echo $row['posts_bild']; ?></div>
+            <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div> <br>
 
             <a href="aendern.php?<?php echo 'page='. $row['posts_id']; ?>"><button>Ändern</button></a>
             <br>
@@ -58,6 +75,9 @@ get_header( ...$args );
 
         <?php endwhile;
     }
+
+
+
 
 ?>
 

@@ -31,8 +31,8 @@ get_header( ...$args );
 
 if(!empty($_POST)){
 
-    $posts_autor_id_ref = mysqli_real_escape_string($db, $_POST['aid']);
-    $posts_kateg_id_ref = mysqli_real_escape_string($db, $_POST['kid']);
+    $posts_autor_id_ref = $_SESSION['aid'];
+    $posts_kateg_id_ref = mysqli_real_escape_string($db, $_POST['auswahl']);
     $posts_titel= mysqli_real_escape_string($db, $_POST['titel']);
     $posts_inhalt= mysqli_real_escape_string($db, $_POST['text']);
     $posts_bild= mysqli_real_escape_string($db, $_POST['url']);
@@ -75,8 +75,16 @@ if(!empty($_POST)){
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
         <div>Titel: <input type="text" name="titel"></div>
-        <div>Autoren-ID: <input type="text" name="aid" value="<?php echo $_SESSION['aid'];?>"></div>
-        <div>Kathegorie-ID: <input type="text" name="kid"></div>
+       
+        <div> Kategorie:
+            <select name="auswahl" >
+                <option value="<?php echo $_SESSION['Gitarre']['kateg_id']; ?>"><?php echo $_SESSION['Gitarre']['kateg_name']; ?></option>
+                <option value="<?php echo $_SESSION['Bass']['kateg_id']; ?>"><?php echo $_SESSION['Bass']['kateg_name']; ?></option>
+                <option value="<?php echo $_SESSION['Schlagzeug']['kateg_id']; ?>"><?php echo $_SESSION['Schlagzeug']['kateg_name']; ?></option>
+                <option value="<?php echo $_SESSION['Saxophon']['kateg_id']; ?>"><?php echo $_SESSION['Saxophon']['kateg_name']; ?></option>
+            </select>
+        </div>
+
         <div>Bild-URL: <input type="text" name="url"></div>
         <div>Text: <textarea name="text" id="" cols="30" rows="10"></textarea></div>
 

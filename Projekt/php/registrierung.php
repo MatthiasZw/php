@@ -29,14 +29,16 @@ get_header( ...$args );
 
 if(!empty($_POST)){
 
+    $autor_vorname=$_POST['autor_vorname'];
+    $autor_nachname=$_POST['autor_nachname'];
     $autor_email = $_POST['autor_email'];
     $autor_passwort = password_hash($_POST['autor_passwort'], PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO
         tbl_autoren
-        (autor_email, autor_passwort)
+        (autor_vorname, autor_nachname, autor_email, autor_passwort)
         VALUES
-        (?,?)";
+        (?,?,?,?)";
 
         $stmt = mysqli_prepare($db, $sql);
 
@@ -44,7 +46,7 @@ if(!empty($_POST)){
             echo get_db_error($db, $sql);
         }else{
 
-            mysqli_stmt_bind_param($stmt, 'ss', $autor_email, $autor_passwort);
+            mysqli_stmt_bind_param($stmt, 'ssss', $autor_vorname, $autor_nachname, $autor_email, $autor_passwort);
             mysqli_stmt_execute($stmt);
 
             printf('<p class="alert alert-success">Ihre Registrierung war erfolgreich!<br>Anzahl der hinzugefügten Datensätze:%d</p>', 
@@ -64,6 +66,8 @@ if(!empty($_POST)){
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         
+        <p>Name: <input type="text" name="autor_nachname"></p>
+        <p>Vorname: <input type="text" name="autor_vorname"></p>
         <p>E-Mail-Adresse: <input type="text" name="autor_email"></p>
         <p>Passwort: <input type="text" name="autor_passwort"></p>
         <p><button type="submit">Registrieren</button></p>

@@ -30,12 +30,9 @@ get_header( ...$args );
 
 //Auslesen der Kategorien für Select-Filter:
 
-    $sql = "SELECT posts_id,
-    posts_autor_id_ref, 
-    posts_kateg_id_ref, 
-    posts_titel,
-    posts_inhalt,
-    posts_bild FROM `tbl_posts`";
+    $sql = "SELECT kateg_id,
+    kateg_name
+    FROM `tbl_kategorien`";
 
 
     $result = mysqli_query($db, $sql);
@@ -44,7 +41,7 @@ get_header( ...$args );
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
     
-        Kategorie auswählen: <select name="auswahl" >
+        <b>Kategorie auswählen:</b> <select name="auswahl" >
 
     <?php
 
@@ -54,9 +51,7 @@ get_header( ...$args );
             while ($row = mysqli_fetch_assoc( $result)): ?>
 
 
-
-
-                <option value="<?php echo $row['posts_kateg_id_ref']; ?>"><?php echo $row['posts_kateg_id_ref']; ?></option>
+                <option value="<?php echo $row['kateg_id']; ?>"><?php echo $row['kateg_name']; ?></option>
 
             <?php endwhile;
 
@@ -70,6 +65,37 @@ get_header( ...$args );
 
 </form>
 
+<?php 
+
+
+// Kategorien in $_GET schreiben (nicht sehr elegant)
+
+$sql2 = "SELECT kateg_id,
+kateg_name
+FROM `tbl_kategorien`";
+
+
+$result2 = mysqli_query($db, $sql2);
+
+
+
+if(false===$result2){
+    echo get_db_error($db, $sql2);
+}else{
+    while ($row = mysqli_fetch_assoc( $result2)):
+        
+       
+            $_SESSION[$row['kateg_name']] = $row;
+            
+       
+     endwhile;
+}
+
+
+
+?>
+
+
 <!-- Anzeigen der gefilterten Posts oder alle Posts: -->
 
 <?php 
@@ -79,8 +105,6 @@ get_header( ...$args );
         $auswahl=$_GET['auswahl'];
 
         $sql = "SELECT posts_id,
-        posts_autor_id_ref, 
-        posts_kateg_id_ref, 
         posts_titel,
         posts_inhalt,
         posts_bild FROM `tbl_posts` WHERE posts_kateg_id_ref=$auswahl";
@@ -95,12 +119,10 @@ get_header( ...$args );
             while ($row = mysqli_fetch_assoc( $result)): ?> 
             
                 <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>">
-                    <div>Titel: <?php echo $row['posts_titel']; ?></div>
+                    <div><b>Titel:</b> <?php echo $row['posts_titel']; ?></div>
                 </a>
-                <div>Autoren-ID: <?php echo $row['posts_autor_id_ref']; ?></div>
-                <div>Kathegorie-ID: <?php echo $row['posts_kateg_id_ref']; ?></div>
-                <div>Bild-Pfad: <?php echo $row['posts_bild']; ?></div>
-                <div>Text: <?php echo $row['posts_inhalt']; ?></div> 
+                <div><b>Bild-Pfad:</b> <?php echo $row['posts_bild']; ?></div>
+                <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div> 
                 <br>
 
 
@@ -127,12 +149,10 @@ get_header( ...$args );
             while ($row = mysqli_fetch_assoc( $result)): ?> 
             
                 <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>">
-                    <div>Titel: <?php echo $row['posts_titel']; ?></div>
+                    <div><b>Titel:</b> <?php echo $row['posts_titel']; ?></div>
                 </a>
-                <div>Autoren-ID: <?php echo $row['posts_autor_id_ref']; ?></div>
-                <div>Kathegorie-ID: <?php echo $row['posts_kateg_id_ref']; ?></div>
-                <div>Bild-Pfad: <?php echo $row['posts_bild']; ?></div>
-                <div>Text: <?php echo $row['posts_inhalt']; ?></div> 
+                <div><b>Bild-Pfad:</b> <?php echo $row['posts_bild']; ?></div>
+                <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div> 
                 <br>
 
 

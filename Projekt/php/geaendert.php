@@ -29,7 +29,6 @@ $args = array(
     );
 get_header( ...$args );
 
-
 $page= $_GET['page'];
 
 
@@ -37,8 +36,8 @@ $page= $_GET['page'];
 
 if(!empty($_POST)){
 
-    $posts_autor_id_ref = mysqli_real_escape_string($db, $_POST['aid']);
-    $posts_kateg_id_ref = mysqli_real_escape_string($db, $_POST['kid']);
+    $posts_autor_id_ref = $_SESSION['aid'];
+    $posts_kateg_id_ref = mysqli_real_escape_string($db, $_POST['auswahl']);
     $posts_titel= mysqli_real_escape_string($db, $_POST['titel']);
     $posts_inhalt= mysqli_real_escape_string($db, $_POST['text']);
     $posts_bild= mysqli_real_escape_string($db, $_POST['url']);

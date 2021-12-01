@@ -1,27 +1,16 @@
 <?php
 session_start();
+
 if(!$_SESSION['navlog']){
     $_SESSION['navlog']='Login';
     $_SESSION['navlink']='login.php';
 }
+
 require_once( '../includes/functions.inc.php' );
 $database = 'miniblog';
 require_once( '../includes/db-connect.inc.php' );
-// get_header( string $title, string/array $css=NULL, bool $bootstrap=false, string $header=NULL, array $nav=NULL, bool $fluid=false )
-$args = array(
-    'Miniblog',
-    'css/blog.css',
-    true,
-    'Miniblog-UEBERSICHT',
-    array(
-        'Mein Blog',
-    array( 'Uebersicht' => 'index.php',
-     $_SESSION['navlog'] => $_SESSION['navlink'],
-     'Registrierung' => 'registrierung.php',
-     $_SESSION['navneu'] => $_SESSION['neulink'])
-        )
-    );
-get_header( ...$args );
+
+//Passwort-Abgleich mit Datenbank
 
 if( !empty($_POST)){
 
@@ -39,13 +28,10 @@ if( !empty($_POST)){
             
     $stmt = mysqli_prepare($db, $sql);
 
-      
-
     if(false === $stmt) {
 
         get_db_error($db, $sql);
         
-
     }else{
         mysqli_stmt_bind_param($stmt, 's', $autor_email);
         mysqli_stmt_execute($stmt);
@@ -62,23 +48,20 @@ if( !empty($_POST)){
             $_SESSION['navlink']='logout.php';
             $_SESSION['navneu']='Neu';
             $_SESSION['neulink']='neu.php';
-
-            
-            echo '<p class="alert alert-success">Login erfolgreich! Sie werden in 3 Sekunden zurück zur Hauptseite geleitet. </p>';
-            
-            header("refresh:30; url=index.php");
+            $_SESSION['success']=true;
 
         }else{
-            echo '<p class="alert alert-danger">Login fehlgeschlagen!</p>';
+
             $_SESSION['login']=false;
             $_SESSION['navlog']='Login';
             $_SESSION['navlink']='login.php';
-            
+            $_SESSION['success']=false;
+ 
         }
         
     }
 
-    //Autor ID in $_SESSION
+//Autor ID in $_SESSION speichern
     
     $sql2 = "SELECT
     `autor_id` 
@@ -101,8 +84,7 @@ if( !empty($_POST)){
          endwhile;
     }
 
-
-    // Kategorien in $_SESSION
+// Kategorien in $_SESSION ablegen
 
     $sql3 = "SELECT
     `kateg_id`,
@@ -122,15 +104,50 @@ if( !empty($_POST)){
            
                 $_SESSION[$row['kateg_name']] = $row;
                 
-            
-            echo '<pre>', var_dump( $row ), '</pre>';
-
-        
            
          endwhile;
     }
 
-}                
+}  
+
+// get_header( string $title, string/array $css=NULL, bool $bootstrap=false, string $header=NULL, array $nav=NULL, bool $fluid=false )
+$args = array(
+    'Miniblog',
+    'css/blog.css',
+    true,
+    'Miniblog-LOGIN',
+    array(
+        'Mein Blog',
+    array( 'Uebersicht' => 'index.php',
+     $_SESSION['navlog'] => $_SESSION['navlink'],
+     'Registrierung' => 'registrierung.php',
+     $_SESSION['navneu'] => $_SESSION['neulink'])
+        )
+    );
+get_header( ...$args );     
+
+//Login-Erfolg auswerten wie besprochen, 
+//Rückmeldung jetz unter Nav-Leiste.
+//Bei Erfolg Redirect auf Hauptseite,
+//bei Misserfolg Verbleib auf Login-Seite.
+//Bei erneutem Aufruf des Login über Nav-Leiste Fehlermeldung wieder weg.
+
+if(isset($_SESSION['success'])){
+
+    if($_SESSION['success']===true){
+
+         echo '<p class="alert alert-success">Login erfolgreich! Sie werden in 3 Sekunden zurück zur Hauptseite geleitet. </p>';
+
+    header("refresh:3; url=index.php");
+    
+    } elseif ($_SESSION['success']===false) {
+
+        echo '<p class="alert alert-danger">Login fehlgeschlagen!</p>';
+        $_SESSION['success']='';
+
+    }
+
+}
 
 ?>
 
