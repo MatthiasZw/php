@@ -78,7 +78,6 @@ FROM `tbl_kategorien`";
 $result2 = mysqli_query($db, $sql2);
 
 
-
 if(false===$result2){
     echo get_db_error($db, $sql2);
 }else{
@@ -161,9 +160,6 @@ if(false===$result2){
             echo get_db_error($db, $sql);
         }else{
             while ($row = mysqli_fetch_assoc( $result)): ?> 
-            
-              
-            
             
                 <div class="col">
                     <div class="card" style="width: 18rem;">
