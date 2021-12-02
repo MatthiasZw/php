@@ -62,6 +62,7 @@ get_header( ...$args );
     </select>
 
         <button type="submit">Filtern</button>
+        <button><a href="index.php">Alle</a></button>
 
 </form>
 
