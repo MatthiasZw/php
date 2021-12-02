@@ -16,7 +16,7 @@ $args = array(
     'Miniblog',
     '../css/blog.css',
     true,
-    'Miniblog-UEBERSICHT',
+    'Miniblog-Registrierung',
     array(
         'Mein Blog',
     array( 'Übersicht' => 'index.php',
