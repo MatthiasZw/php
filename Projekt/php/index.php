@@ -17,10 +17,10 @@ $args = array(
     'Miniblog',
     '../css/blog.css',
     true,
-    'Miniblog-UEBERSICHT',
+    'Miniblog-ÜBERSICHT',
     array(
         'Mein Blog',
-    array( 'Uebersicht' => 'index.php',
+    array( 'Übersicht' => 'index.php',
      $_SESSION['navlog'] => $_SESSION['navlink'],
      'Registrierung' => 'registrierung.php',
      $_SESSION['navneu'] => $_SESSION['neulink'])

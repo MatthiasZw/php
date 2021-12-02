@@ -19,7 +19,7 @@ $args = array(
     'Miniblog-DETAILSEITE',
     array(
         'Mein Blog',
-    array( 'Uebersicht' => 'index.php',
+    array( 'Übersicht' => 'index.php',
      $_SESSION['navlog'] => $_SESSION['navlink'],
      'Registrierung' => 'registrierung.php',
      $_SESSION['navneu'] => $_SESSION['neulink'])
