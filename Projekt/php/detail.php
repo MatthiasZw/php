@@ -60,8 +60,36 @@ get_header( ...$args );
     }else{
         while ($row = mysqli_fetch_assoc( $result)): ?>
         
+
+
+        <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="<?php echo $row['posts_bild']; ?>" alt="Card image cap">
+                      <div class="card-body">
+                    
+                          <h3 class="card-title">
+                    
+                              <div><b>Titel:</b> <?php echo $row['posts_titel']; ?></div>
+                              </a>
+                          </h3>
+
+                          <h4 class="card-subtitle mb-2 text-muted"><?php echo " <b>Autor:</b> $name"; ?></h4>
+                          <h5 class="card-subtitle mb-2 text-muted"><?php echo " <b>Kategorie:</b>" . $row['kateg_name']; ?></h5>
+                          <h6 class="card-subtitle mb-2 text-muted"><?php echo " <b>Bild:</b>" . $row['posts_bild']; ?></h6>
+
+                          <p class="card-text">
+                              <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div>
+                          </p>
+                          
+                          <a href="aendern.php?<?php echo 'page='. $row['posts_id']; ?>" class="btn btn-primary">Ändern</a>
+                    
+                          <br>
+                      </div>
+                    </div>
+
+
+
         
-                <div><b>Titel: </b><?php echo $row['posts_titel']; ?></div>
+           <!--  <div><b>Titel: </b><?php echo $row['posts_titel']; ?></div>
             </a>
             <div><b>Autor:</b> <?php echo $name; ?></div>
             <div><b>Autoren-ID:</b> <?php echo $row['posts_autor_id_ref']; ?></div>
@@ -70,7 +98,7 @@ get_header( ...$args );
             <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div> <br>
 
             <a href="aendern.php?<?php echo 'page='. $row['posts_id']; ?>"><button>Ändern</button></a>
-            <br>
+            <br> -->
 
 
         <?php endwhile;

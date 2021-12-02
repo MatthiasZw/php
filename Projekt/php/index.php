@@ -98,6 +98,9 @@ if(false===$result2){
 
 <!-- Anzeigen der gefilterten Posts oder alle Posts: -->
 
+<div class="container"></div>
+<div class="row">
+
 <?php 
 
     if (isset( $_GET['auswahl'])){
@@ -117,13 +120,41 @@ if(false===$result2){
             echo get_db_error($db, $sql);
         }else{
             while ($row = mysqli_fetch_assoc( $result)): ?> 
-            
+
+                
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="<?php echo $row['posts_bild']; ?>" alt="Card image cap">
+                      <div class="card-body">
+                    
+                          <h3 class="card-title">
+                    
+                              <div><b>Titel:</b> <?php echo $row['posts_titel']; ?></div>
+                              </a>
+                          </h3>
+                          <p class="card-text">
+                              <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div>
+                          </p>
+                          <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>" class="btn btn-primary">Artikel lesen</a>
+                    
+                          <br>
+                      </div>
+                    </div>
+                </div>
+                <br>
+
+
+
+
+
+
+            <!-- 
                 <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>">
                     <div><b>Titel:</b> <?php echo $row['posts_titel']; ?></div>
                 </a>
                 <div><b>Bild-Pfad:</b> <?php echo $row['posts_bild']; ?></div>
                 <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div> 
-                <br>
+                <br> -->
 
 
             <?php endwhile;
@@ -133,8 +164,6 @@ if(false===$result2){
     }else{
 
         $sql = "SELECT posts_id,
-        posts_autor_id_ref, 
-        posts_kateg_id_ref, 
         posts_titel,
         posts_inhalt,
         posts_bild FROM `tbl_posts`";
@@ -148,12 +177,42 @@ if(false===$result2){
         }else{
             while ($row = mysqli_fetch_assoc( $result)): ?> 
             
-                <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>">
+              
+            
+            
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="<?php echo $row['posts_bild']; ?>" alt="Card image cap">
+                          <div class="card-body">
+                    
+                              <h3 class="card-title">
+                    
+                                  <div><b>Titel:</b> <?php echo $row['posts_titel']; ?></div>
+                                  </a>
+                              </h3>
+                              <p class="card-text">
+                                  <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div>
+                              </p>
+                              <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>" class="btn btn-primary">Artikel lesen</a>
+                    
+                              <br>
+                          </div>
+                    </div>
+                </div>
+                <br>
+
+            
+            
+            
+            
+            
+                
+                <!--  <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>">
                     <div><b>Titel:</b> <?php echo $row['posts_titel']; ?></div>
                 </a>
                 <div><b>Bild-Pfad:</b> <?php echo $row['posts_bild']; ?></div>
                 <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div> 
-                <br>
+                <br> -->
 
 
             <?php endwhile;
@@ -163,6 +222,7 @@ if(false===$result2){
     }
  
 ?>
-
+</div>
+</div>
     
 <?php get_footer(true, true); ?>
