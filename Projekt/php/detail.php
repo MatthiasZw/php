@@ -62,7 +62,7 @@ get_header( ...$args );
         
 
 
-        <div class="card" style="width: 18rem;">
+        <div class="card bg-light" style="width: 18rem;">
                     <img class="card-img-top" src="<?php echo $row['posts_bild']; ?>" alt="Card image cap">
                       <div class="card-body">
                     

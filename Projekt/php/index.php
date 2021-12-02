@@ -120,7 +120,7 @@ if(false===$result2){
 
                 
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card bg-light" style="width: 18rem;">
                     <img class="card-img-top" src="<?php echo $row['posts_bild']; ?>" alt="Card image cap">
                       <div class="card-body">
                     
@@ -162,7 +162,7 @@ if(false===$result2){
             while ($row = mysqli_fetch_assoc( $result)): ?> 
             
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card bg-light" style="width: 18rem;">
                         <img class="card-img-top" src="<?php echo $row['posts_bild']; ?>" alt="Card image cap">
                           <div class="card-body">
                     
