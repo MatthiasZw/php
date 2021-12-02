@@ -16,7 +16,7 @@ require_once( '../includes/db-connect.inc.php' );
 // get_header( string $title, string/array $css=NULL, bool $bootstrap=false, string $header=NULL, array $nav=NULL, bool $fluid=false )
 $args = array(
     'Miniblog',
-    'css/blog.css',
+    '../css/blog.css',
     true,
     'Miniblog-NEUERSTELLUNG',
     array(
@@ -72,21 +72,21 @@ if(!empty($_POST)){
 
 ?>
 
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form class="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
-        <div>Titel: <input type="text" name="titel"></div>
-       
-        <div> Kategorie:
-            <select name="auswahl" >
-                <option value="<?php echo $_SESSION['Gitarre']['kateg_id']; ?>"><?php echo $_SESSION['Gitarre']['kateg_name']; ?></option>
-                <option value="<?php echo $_SESSION['Bass']['kateg_id']; ?>"><?php echo $_SESSION['Bass']['kateg_name']; ?></option>
-                <option value="<?php echo $_SESSION['Schlagzeug']['kateg_id']; ?>"><?php echo $_SESSION['Schlagzeug']['kateg_name']; ?></option>
-                <option value="<?php echo $_SESSION['Saxophon']['kateg_id']; ?>"><?php echo $_SESSION['Saxophon']['kateg_name']; ?></option>
-            </select>
-        </div>
-
-        <div>Bild-URL: <input type="text" name="url"></div>
-        <div>Text: <textarea name="text" id="" cols="30" rows="10"></textarea></div>
+        <p >
+            <div>Titel: <input type="text" name="titel"></div><br>
+            <div> Kategorie:
+                <select name="auswahl" >
+                    <option value="<?php echo $_SESSION['Gitarre']['kateg_id']; ?>"><?php echo $_SESSION['Gitarre']['kateg_name']; ?></option>
+                    <option value="<?php echo $_SESSION['Bass']['kateg_id']; ?>"><?php echo $_SESSION['Bass']['kateg_name']; ?></option>
+                    <option value="<?php echo $_SESSION['Schlagzeug']['kateg_id']; ?>"><?php echo $_SESSION['Schlagzeug']['kateg_name']; ?></option>
+                    <option value="<?php echo $_SESSION['Saxophon']['kateg_id']; ?>"><?php echo $_SESSION['Saxophon']['kateg_name']; ?></option>
+                </select>
+            </div><br>
+            <div>Bild-URL: <input type="text" name="url"></div>
+        </p>
+        <div>Text: <textarea name="text" id="" cols="30" rows="10"></textarea></div><br>
 
         <div><button type="submit">Speichern</button>
         <button type="reset">Zurücksetzen</button></div>

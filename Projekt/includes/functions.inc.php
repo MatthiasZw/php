@@ -68,7 +68,7 @@
     <header>
 
     <div class="<?php echo $class_fluid; ?>">
-        <h1 class="display-3"><?php echo (is_null($header)) ? $title : $header; ?></h1>
+        <h1 class="display-3 head"><?php echo (is_null($header)) ? $title : $header; ?></h1>
     </div>
     </header>
     </main class="<?php echo $class_fluid; ?>">

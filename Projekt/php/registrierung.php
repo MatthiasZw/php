@@ -14,7 +14,7 @@ require_once( '../includes/db-connect.inc.php' );
 // get_header( string $title, string/array $css=NULL, bool $bootstrap=false, string $header=NULL, array $nav=NULL, bool $fluid=false )
 $args = array(
     'Miniblog',
-    'css/blog.css',
+    '../css/blog.css',
     true,
     'Miniblog-UEBERSICHT',
     array(
@@ -62,9 +62,9 @@ if(!empty($_POST)){
 
 ?>
     
-    <p>Bitte geben Sie einen Benutzernamen und ein Passwort an!</p>
+    <p><h2 class="head2">Bitte geben Sie einen Namen, Benutzernamen und ein Passwort an!</h2></p>
 
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form class="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         
         <p>Name: <input type="text" name="autor_nachname"></p>
         <p>Vorname: <input type="text" name="autor_vorname"></p>

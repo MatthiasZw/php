@@ -14,7 +14,7 @@ require_once( '../includes/db-connect.inc.php' );
 // get_header( string $title, string/array $css=NULL, bool $bootstrap=false, string $header=NULL, array $nav=NULL, bool $fluid=false )
 $args = array(
     'Miniblog',
-    'css/blog.css',
+    '../css/blog.css',
     true,
     'Miniblog-DETAILSEITE',
     array(
@@ -79,26 +79,12 @@ get_header( ...$args );
                           <p class="card-text">
                               <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div>
                           </p>
-                          
+
                           <a href="aendern.php?<?php echo 'page='. $row['posts_id']; ?>" class="btn btn-primary">Ändern</a>
                     
                           <br>
                       </div>
                     </div>
-
-
-
-        
-           <!--  <div><b>Titel: </b><?php echo $row['posts_titel']; ?></div>
-            </a>
-            <div><b>Autor:</b> <?php echo $name; ?></div>
-            <div><b>Autoren-ID:</b> <?php echo $row['posts_autor_id_ref']; ?></div>
-            <div><b>Kathegorie:</b> <?php echo $row['kateg_name']; ?></div>
-            <div><b>Bild-Pfad:</b> <?php echo $row['posts_bild']; ?></div>
-            <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div> <br>
-
-            <a href="aendern.php?<?php echo 'page='. $row['posts_id']; ?>"><button>Ändern</button></a>
-            <br> -->
 
 
         <?php endwhile;

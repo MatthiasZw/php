@@ -113,7 +113,7 @@ if( !empty($_POST)){
 // get_header( string $title, string/array $css=NULL, bool $bootstrap=false, string $header=NULL, array $nav=NULL, bool $fluid=false )
 $args = array(
     'Miniblog',
-    'css/blog.css',
+    '../css/blog.css',
     true,
     'Miniblog-LOGIN',
     array(
@@ -151,7 +151,7 @@ if(isset($_SESSION['success'])){
 
 ?>
 
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<form class="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <p>E-Mail-Adresse: <input type="text" name="autor_email" ></p>
     <p>Passwort: <input type="text" name="autor_passwort"></p>
     <p><button type="submit">Login</button></p>

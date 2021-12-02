@@ -15,7 +15,7 @@ require_once( '../includes/db-connect.inc.php' );
 // get_header( string $title, string/array $css=NULL, bool $bootstrap=false, string $header=NULL, array $nav=NULL, bool $fluid=false )
 $args = array(
     'Miniblog',
-    'css/blog.css',
+    '../css/blog.css',
     true,
     'Miniblog-UEBERSICHT',
     array(
@@ -41,7 +41,7 @@ get_header( ...$args );
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
     
-        <b>Kategorie auswählen:</b> <select name="auswahl" >
+        <p id="kt"><b>Kategorie auswählen:</b> <select name="auswahl" ></p>
 
     <?php
 
@@ -90,8 +90,6 @@ if(false===$result2){
        
      endwhile;
 }
-
-
 
 ?>
 
@@ -144,19 +142,6 @@ if(false===$result2){
                 <br>
 
 
-
-
-
-
-            <!-- 
-                <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>">
-                    <div><b>Titel:</b> <?php echo $row['posts_titel']; ?></div>
-                </a>
-                <div><b>Bild-Pfad:</b> <?php echo $row['posts_bild']; ?></div>
-                <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div> 
-                <br> -->
-
-
             <?php endwhile;
   
         }
@@ -200,19 +185,6 @@ if(false===$result2){
                     </div>
                 </div>
                 <br>
-
-            
-            
-            
-            
-            
-                
-                <!--  <a href="detail.php?<?php echo 'page='. $row['posts_id']; ?>">
-                    <div><b>Titel:</b> <?php echo $row['posts_titel']; ?></div>
-                </a>
-                <div><b>Bild-Pfad:</b> <?php echo $row['posts_bild']; ?></div>
-                <div><b>Text:</b> <?php echo $row['posts_inhalt']; ?></div> 
-                <br> -->
 
 
             <?php endwhile;
