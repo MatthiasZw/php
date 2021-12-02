@@ -136,7 +136,7 @@ if(false===$result2){
                     
                           <br>
                       </div>
-                    </div>
+                    </div><br>
                 </div>
                 <br>
 
@@ -178,7 +178,7 @@ if(false===$result2){
                     
                               <br>
                           </div>
-                    </div>
+                    </div><br>
                 </div>
                 <br>
 
